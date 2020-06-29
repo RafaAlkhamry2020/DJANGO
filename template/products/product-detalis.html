@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head_title %}{{Product.title | capfirst }}Product Detalis
+{% endblock %}
+
+{% block content %}
+<section class="single-product-details clearfix">
+    <div class="product-details-img">
+        <img src="{{Product.image.url}}" alt="" />
+    </div>
+        <div class="product-details-desc">
+            <div class="product-brand">{{Product.brand | capfirst }}
+            </div>
+            <h2 class="product-name">{{Product.title | capfirst }}</h2>
+            <div class="product-price">${{Product.price | floatformat:2 }}
+            </div>
+            <p class="product-desc">{{Product.description}} </p>
+            
+    
+    </div>
+</section>
+        
+{% endblock %}
+
