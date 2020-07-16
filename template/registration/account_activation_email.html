@@ -1,5 +1,13 @@
+{% extends "base.html" %}
+{% block head_title %}Account Activation Email{% endblock %}
+
+{% block content %}
+
+
 Hi {{user.username}} ,
 
 Please click on the link below to confirm your registration :
 
 {{domain }}{%  url 'activate_email' uid=uid token=token %}
+
+{% endblock %}
