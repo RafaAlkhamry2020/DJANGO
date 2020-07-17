@@ -19,7 +19,7 @@ def signup(request):
             user.is_active = False
             user.save()
             send_confirmation_email(request, user)
-            return render('registration/signup_success.html')
+            return render(request, 'registration/signup_success.html')
     else:
         form = SignUpForm()
 
