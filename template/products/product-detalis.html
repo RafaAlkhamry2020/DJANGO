@@ -1,20 +1,20 @@
 {% extends "base.html" %}
-{% block head_title %}{{Product.title | capfirst }}Product Detalis
+{% block head_title %}{{product.title | capfirst }}Product Detalis
 {% endblock %}
 
 {% block content %}
 <section class="single-product-details clearfix">
     <div class="product-details-img">
-        <img src="{{Product.image.url}}" alt="" />
+        <img src="{{product.image.url}}" alt="" />
     </div>
         <div class="product-details-desc">
-            <div class="product-brand">{{Product.brand | capfirst }}
+            <div class="product-brand">{{product.brand | capfirst }}
             </div>
-            <h2 class="product-name">{{Product.title | capfirst }}</h2>
-            <div class="product-price">${{Product.price | floatformat:2 }}
+            <h2 class="product-name">{{product.title | capfirst }}</h2>
+            <div class="product-price">${{product.price | floatformat:2 }}
             </div>
-            <p class="product-desc">{{Product.description}} </p>
-            
+            <p class="product-desc">{{product.description}} </p>
+            <a href="{% url 'add_to_cart' product_id=product.id %}">Add Product </a>
     
     </div>
 </section>
