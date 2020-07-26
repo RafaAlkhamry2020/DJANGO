@@ -1,21 +1,57 @@
 {% extends "base.html" %}
-{% block head_title %}Cart{% endblock %}
+{% block head_title %}My Cart{% endblock %}
 
 {% block content %}
+<section class="clearfix">
 
-<ul>
-    {% for product in products %}
-    <li>
-        <h2>{{product.title | capfirst}}</h2>
-        <a href="{% url 'remove_from_cart' product_id=product.id %}">Remove From Cart</a>
-    </li>
-    {% empty %}
-    <li>No Products Yet</li>
-    {% endfor %}
-</ul>
-<p>Total Price : {{total_price}}</p>
-<div>
+    <ul>
+
+        {% for product in products %}
+
+        <div>
+
+            <li>
+
+                <h2>
+                    {{ product.title | capfirst }}
+                </h2>
+                <a href="{% url 'remove_from_cart' product_id=product.id %}">
+                    Remove from cart
+                </a>
+
+            </li>
+        </div>
+
+        {% empty %}
+
+        <li>
+            <p>No Products Yet.</p>
+        </li>
+
+        {% endfor %}
+
+    </ul>
     <a class="clear" href="{% url 'remove_all_from_cart' %}">Clear cart</a>
-</div>
 
+
+
+    {% if cart.items.all.count > 0 %}
+    <li class="item" id="cart-summary">
+        <div>
+            <p></p>
+        </div>
+        <div>
+            <h3>Total</h3>
+        </div>
+        <div>
+            <p>${{ cart.total_price }}</p>
+        </div>
+        <div>
+            <a href="{% url 'order' %}" class="checkout">Checkout</a>
+        </div>
+    </li>
+    {% endif%}
+
+    <p>Total Price:{{ total_price }}</p>
+</section>
 {% endblock %}

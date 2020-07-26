@@ -8,6 +8,16 @@ from products.models import Product
 
 
 @login_required
+def cart(request):
+    user = request.user
+    products = user.cart.items.all()
+    total_price = products.aggregate(Sum('price'))
+
+    return render(request, 'carts/cart.html',
+                  {'products': products, 'total_price': total_price})
+
+
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     cart = Cart.objects.get(user=request.user)
@@ -31,13 +41,3 @@ def remove_all_from_cart(request):
     cart.items.clear()
 
     return redirect('cart')
-
-
-@login_required
-def cart(request):
-    user = request.user
-    products = user.cart.items.all()
-    total_price = products.aggregate(Sum('price'))
-
-    return render(request, 'carts/cart.html',
-                  {'products': products}, total_price)

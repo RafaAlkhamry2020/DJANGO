@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head_title %}Orders{% endblock %}
+
+{% block content %}
+<section class="clearfix">
+
+    <h2 class="section-headline">Orders</h2>
+    <p class="section-description">
+        All users' orders
+    </p>
+    <div class="orders">
+        <ul>
+            {% for order in orders %}
+            <li class="order-details">
+                <p>User: <span>{{ order.user }}</span></p>
+                <p>Order Address: <span>{{ order.Address }}</span></p>
+                <p>Order Id: <span>{{ order.id }}</span></p>
+                <p>Order Date: <span>{{ order.ordered_at }}</span></p>
+            </li>
+            {% empty %}
+            <li>No orders yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
